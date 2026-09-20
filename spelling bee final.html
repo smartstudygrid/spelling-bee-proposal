@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Bee Championship 2026 - Proposal Presentation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0A192F',
+                            deepNavy: '#060D18',
+                            gold: '#D4AF37',
+                            goldHover: '#F3C623',
+                            blueAccent: '#1E3A8A',
+                            softBlue: '#3B82F6',
+                            cardBg: '#112240',
+                            cardBorder: '#233554'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Cinzel"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #060D18;
+            color: #E2E8F0;
+        }
+
+        .slide-card-container {
+            height: calc(100vh - 7rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-scroll-area {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.5) rgba(10, 25, 47, 0.5);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #9A7B1C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-glow {
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .gold-border-glow:hover {
+            border: 1.5px solid rgba(212, 175, 55, 0.8);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(17, 34, 64, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Custom scrollbar for inner scrollable content */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(6, 13, 24, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.5);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.9);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col justify-between select-none bg-brand-deepNavy text-slate-100 overflow-hidden">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-800 px-4 md:px-8 py-3 flex justify-between items-center bg-brand-deepNavy/95 backdrop-blur-md h-14">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-brand-deepNavy font-bold text-xl shadow-lg">
+                <i class="fa-solid font-bold fa-spell-check"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-base md:text-lg text-white tracking-wide flex items-center gap-2">
+                    Al Rowad International Schools
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Proposal 2026</span>
+                </h1>
+                <p class="text-xs text-slate-300 hidden sm:block">English Department • Head of Department: Amanullah Khan</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <!-- Slide Jump Dropdown -->
+            <div class="relative">
+                <button id="slideJumpBtn" onclick="toggleSlideMenu()" class="px-3.5 py-1.5 text-sm font-medium bg-brand-cardBg hover:bg-brand-cardBorder border border-slate-700 rounded-lg flex items-center space-x-2 text-slate-200 transition">
+                    <i class="fa-solid fa-list-ul text-amber-400"></i>
+                    <span id="slideIndicatorText">Slide 1 of 9</span>
+                    <i class="fa-solid fa-chevron-down text-xs opacity-70"></i>
+                </button>
+                <div id="slideMenu" class="hidden absolute right-0 mt-2 w-72 glass-card bg-brand-navy border border-slate-700 rounded-xl shadow-2xl py-2 z-50 max-h-80 overflow-y-auto">
+                    <!-- Dynamic Slide Items -->
+                </div>
+            </div>
+
+            <button onclick="toggleFullScreen()" title="Toggle Fullscreen" class="p-2 text-slate-200 hover:text-white bg-brand-cardBg hover:bg-brand-cardBorder border border-slate-700 rounded-lg transition text-sm">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-14 pb-14 px-3 md:px-8 max-w-7xl mx-auto w-full h-screen box-border flex flex-col justify-center my-auto">
+        
+        <!-- SLIDE 1: Title & Hero -->
+        <section id="slide-1" class="slide-container w-full block h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 relative overflow-hidden gold-border-glow slide-scroll-area h-full flex flex-col justify-between">
+                <div class="absolute -top-20 -right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none pulse-glow"></div>
+                <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto flex-grow">
+                    <div class="lg:col-span-7 space-y-6 text-left">
+                        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs md:text-sm font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <span>Proposal For Approval • AIS Only</span>
+                        </div>
+                        
+                        <h1 class="text-4xl md:text-6xl font-extrabold font-serif leading-tight tracking-tight text-white">
+                            Spelling Bee <br/>
+                            <span class="gold-gradient-text">Championship 2026</span>
+                        </h1>
+
+                        <p class="text-slate-200 text-base md:text-xl leading-relaxed font-normal">
+                            Empowering students across Grades 4 to 9 with vocabulary mastery, healthy academic competition, and high-impact family engagement across UK & US English standards.
+                        </p>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+                            <div class="bg-brand-deepNavy/80 p-3.5 rounded-xl border border-slate-700/80">
+                                <p class="text-xs font-semibold text-slate-400">Target Groups</p>
+                                <p class="text-lg font-bold text-amber-300">Grades 4-6 & 7-9</p>
+                            </div>
+                            <div class="bg-brand-deepNavy/80 p-3.5 rounded-xl border border-slate-700/80">
+                                <p class="text-xs font-semibold text-slate-400">Presented By</p>
+                                <p class="text-lg font-bold text-white">English Dept.</p>
+                            </div>
+                            <div class="bg-brand-deepNavy/80 p-3.5 rounded-xl border border-slate-700/80 col-span-2 sm:col-span-1">
+                                <p class="text-xs font-semibold text-slate-400">Lead Officer</p>
+                                <p class="text-lg font-bold text-white">Amanullah Khan</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-4 items-center">
+                            <button onclick="goToSlide(2)" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-brand-deepNavy font-extrabold text-base rounded-xl shadow-xl shadow-amber-500/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                                <span>Explore Proposal</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <span class="text-sm text-slate-300 flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-shield-halved text-amber-400 text-base"></i> Partnered with Tadrees Education
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="w-full max-w-md bg-gradient-to-b from-brand-cardBg to-brand-navy p-8 rounded-2xl border border-slate-700 shadow-2xl text-center space-y-6">
+                            <div class="w-24 h-24 mx-auto rounded-full bg-amber-500/15 border-2 border-amber-500/50 flex items-center justify-center text-amber-400 text-5xl shadow-inner">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold font-serif text-white">Excellence in English</h3>
+                                <p class="text-sm text-slate-300 mt-1">Al Rowad International Schools</p>
+                            </div>
+
+                            <div class="space-y-3.5 text-left">
+                                <div class="flex items-center justify-between p-3.5 rounded-xl bg-brand-deepNavy/90 border border-slate-700 text-sm">
+                                    <span class="text-slate-200 font-medium"><i class="fa-solid fa-graduation-cap text-amber-400 mr-2"></i>Academic Rigor</span>
+                                    <span class="text-emerald-400 font-bold">UK & US Standards</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3.5 rounded-xl bg-brand-deepNavy/90 border border-slate-700 text-sm">
+                                    <span class="text-slate-200 font-medium"><i class="fa-solid fa-users text-amber-400 mr-2"></i>Parent Reach</span>
+                                    <span class="text-emerald-400 font-bold">YouTube Broadcast</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3.5 rounded-xl bg-brand-deepNavy/90 border border-slate-700 text-sm">
+                                    <span class="text-slate-200 font-medium"><i class="fa-solid fa-coins text-amber-400 mr-2"></i>Total Investment</span>
+                                    <span class="text-amber-300 font-extrabold text-lg">2,000 SAR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: The Opportunity -->
+        <section id="slide-2" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-4 gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Strategic Value</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">THE OPPORTUNITY: <span class="gold-gradient-text">Why Now?</span></h2>
+                    </div>
+                    <p class="text-base text-slate-300 max-w-md leading-relaxed">Four primary drivers making this championship a high-impact initiative for Al Rowad International Schools.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto flex-grow">
+                    <div class="glass-card p-6 md:p-8 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition group flex flex-col justify-center">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl font-black shrink-0">
+                                01
+                            </div>
+                            <div class="space-y-2 flex-1">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition">Academic Rigor</h3>
+                                <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                    Builds vocabulary, spelling accuracy, and word knowledge across both UK and US English curriculum standards.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 md:p-8 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition group flex flex-col justify-center">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl font-black shrink-0">
+                                02
+                            </div>
+                            <div class="space-y-2 flex-1">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition">Healthy Competition</h3>
+                                <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                    Gives Grades 4–9 students a structured, confidence-building platform to compete, collaborate, and represent their section.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 md:p-8 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition group flex flex-col justify-center">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl font-black shrink-0">
+                                03
+                            </div>
+                            <div class="space-y-2 flex-1">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition">School Visibility</h3>
+                                <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                    Builds brand prestige by highlighting Al Rowad's academic excellence alongside top regional private schools.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 md:p-8 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition group flex flex-col justify-center">
+                        <div class="flex items-start space-x-5">
+                            <div class="w-14 h-14 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl font-black shrink-0">
+                                04
+                            </div>
+                            <div class="space-y-2 flex-1">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition">Family Engagement</h3>
+                                <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                    Parents attend the Final and Grand Finale live in the auditorium and via livestream, reinforcing home-school partnership around literacy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Getting Started / Selection Process -->
+        <section id="slide-3" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="border-b border-slate-800 pb-3">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Execution Plan</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">GETTING STARTED: <span class="gold-gradient-text">Selection & Promotion</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 my-auto flex-grow">
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition relative flex flex-col justify-between">
+                        <span class="absolute top-4 right-4 text-3xl font-black text-slate-700">01</span>
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-5">
+                                <i class="fa-solid fa-bullhorn text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-xl mb-3">1. Promote</h4>
+                            <p class="text-base text-slate-300 leading-relaxed">
+                                A3 flyers, Schoology announcements, SMS & QR registration; dates integrated directly into the academic calendar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition relative flex flex-col justify-between">
+                        <span class="absolute top-4 right-4 text-3xl font-black text-slate-700">02</span>
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-5">
+                                <i class="fa-solid fa-chalkboard-user text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-xl mb-3">2. In-Class Heats</h4>
+                            <p class="text-base text-slate-300 leading-relaxed">
+                                English teachers conduct in-class heats so every interested student receives an equal opportunity to compete.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition relative flex flex-col justify-between">
+                        <span class="absolute top-4 right-4 text-3xl font-black text-slate-700">03</span>
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-5">
+                                <i class="fa-solid fa-users text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-xl mb-3">3. Select Top 3</h4>
+                            <p class="text-base text-slate-300 leading-relaxed">
+                                Top 3 students per section form a 3-student section team, actively coached by their English teacher.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 hover:border-amber-500/50 transition relative flex flex-col justify-between">
+                        <span class="absolute top-4 right-4 text-3xl font-black text-slate-700">04</span>
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5">
+                                <i class="fa-solid fa-clipboard-check text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-xl mb-3">4. Team Registration</h4>
+                            <p class="text-base text-slate-300 leading-relaxed">
+                                Selected teams are registered through the official link ahead of Round 1 league launch.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-500/15 border border-amber-500/40 rounded-xl p-4 flex items-center space-x-4 text-sm md:text-base text-amber-200 mt-2">
+                    <i class="fa-solid fa-circle-info text-2xl text-amber-400 shrink-0"></i>
+                    <span><strong>Department Governance:</strong> All venues, dates, equipment, and learning materials are coordinated directly by the English Department with AIS School Leadership.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Program Structure -->
+        <section id="slide-4" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-3 gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Tournament Arc</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">PROGRAM <span class="gold-gradient-text">STRUCTURE</span></h2>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="text-sm px-4 py-1.5 rounded-md bg-blue-500/20 text-blue-300 border border-blue-500/40 font-bold">Grades 4-6</span>
+                        <span class="text-sm px-4 py-1.5 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold">Grades 7-9</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto flex-grow">
+                    <div class="bg-brand-deepNavy p-7 rounded-xl border border-slate-700/80 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 bg-blue-500/20 text-blue-400 rounded">Round 1</span>
+                                <i class="fa-solid fa-sitemap text-slate-500 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">League Stage</h3>
+                            <div class="space-y-3 text-sm md:text-base text-slate-200">
+                                <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700">
+                                    <strong class="text-amber-300 block mb-1">Junior Division:</strong>
+                                    [G4 vs G4] • [G5 vs G5] • [G6 vs G6]
+                                </div>
+                                <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700">
+                                    <strong class="text-amber-300 block mb-1">Senior Division:</strong>
+                                    [G7 vs G7] • [G8 vs G8] • [G9 vs G9]
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-slate-800 text-sm md:text-base text-emerald-400 font-bold flex items-center justify-between">
+                            <span>Outcome:</span>
+                            <span>1 Winner Team / Grade Level</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy p-7 rounded-xl border border-slate-700/80 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 bg-amber-500/20 text-amber-400 rounded">Round 2</span>
+                                <i class="fa-solid fa-trophy text-amber-500/50 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">The Final</h3>
+                            <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                The 3 winning teams from each grade category compete in the auditorium before a live parent & student audience.
+                            </p>
+                            <div class="p-3.5 bg-amber-500/15 rounded-lg border border-amber-500/30 text-xs md:text-sm text-amber-200 font-medium">
+                                <i class="fa-solid fa-circle-check text-amber-400 mr-1.5 text-base"></i> Highlights team dynamics & high-level spelling strategy.
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-slate-800 text-sm md:text-base text-emerald-400 font-bold flex items-center justify-between">
+                            <span>Outcome:</span>
+                            <span>1 Winner Team per Division</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-b from-brand-cardBg to-brand-navy p-7 rounded-xl border-2 border-amber-500/60 flex flex-col justify-between shadow-2xl">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 bg-red-500/20 text-red-400 rounded">Round 3</span>
+                                <i class="fa-solid fa-crown text-amber-400 text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Grand Finale</h3>
+                            <span class="text-xs text-red-400 font-extrabold uppercase tracking-widest block">Sudden Death Format</span>
+                            <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                                The winning team splits into individual spellers competing head-to-head to crown the ultimate Spelling Champion of the Year.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-3 border-t border-slate-800 text-base text-amber-300 font-extrabold flex items-center justify-between">
+                            <span>Ultimate Goal:</span>
+                            <span>Spelling Champion 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Built-in Credibility & Rules -->
+        <section id="slide-5" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-3 gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Fairness & Standardization</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">BUILT-IN <span class="gold-gradient-text">CREDIBILITY</span></h2>
+                    </div>
+                    <p class="text-base text-slate-300 max-w-sm">Standardized rules protect integrity and ensure transparent outcomes defensible to parents.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto flex-grow">
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 text-amber-400">
+                                <i class="fa-solid fa-microphone-lines text-2xl"></i>
+                                <h3 class="font-bold text-white text-xl">Pronouncer Protocol</h3>
+                            </div>
+                            <ul class="text-base text-slate-300 space-y-3 list-disc list-inside leading-relaxed">
+                                <li>Sequence: Word definition → Sentence context → Word repeat.</li>
+                                <li>Both US & UK pronunciations given where variations exist.</li>
+                                <li>Designated speller speaks for the team.</li>
+                                <li>Strictly zero hints or artificial emphasis.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-slate-700/80 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 text-blue-400">
+                                <i class="fa-solid fa-gavel text-2xl"></i>
+                                <h3 class="font-bold text-white text-xl">Judges Protocol</h3>
+                            </div>
+                            <ul class="text-base text-slate-300 space-y-3 list-disc list-inside leading-relaxed">
+                                <li>Both US & UK spelling variants accepted equally.</li>
+                                <li>Capitalization not required unless explicitly specified.</li>
+                                <li>All rulings are immediate and final.</li>
+                                <li>Dual-adjudicator verification on stage.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-deepNavy/90 p-6 rounded-xl border border-amber-500/50 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between text-amber-400">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-stopwatch text-2xl"></i>
+                                    <h3 class="font-bold text-white text-xl">The 50-Second Rule</h3>
+                                </div>
+                                <span class="text-xs px-2.5 py-1 bg-amber-500/20 rounded font-mono font-bold text-amber-300">Timed</span>
+                            </div>
+                            <div class="space-y-3 text-sm md:text-base text-slate-200">
+                                <div class="p-3 bg-slate-800/90 rounded-lg border-l-4 border-blue-400">
+                                    <strong class="text-white">0–25 Seconds:</strong>
+                                    Ask re-pronunciation, definition, or discuss with teammates.
+                                </div>
+                                <div class="p-3 bg-slate-800/90 rounded-lg border-l-4 border-amber-400">
+                                    <strong class="text-white">At 25 Seconds:</strong>
+                                    Active spelling must officially commence.
+                                </div>
+                                <div class="p-3 bg-slate-800/90 rounded-lg border-l-4 border-emerald-400">
+                                    <strong class="text-white">Up to 50 Seconds:</strong>
+                                    Valid if started before 50s; retracing allowed ("Can I start over?").
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Logistics & Marketing -->
+        <section id="slide-6" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="border-b border-slate-800 pb-3">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Operational Support</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">WHAT WE NEED & <span class="gold-gradient-text">PARENT REACH</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto flex-grow">
+                    <div class="space-y-4 flex flex-col justify-between">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-building-columns text-amber-400"></i>
+                            School Logistics & Support
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 bg-brand-deepNavy/90 rounded-xl border border-slate-700/80 flex items-start space-x-4">
+                                <i class="fa-solid fa-location-dot text-amber-400 text-2xl mt-1 shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Venue & Calendar</h4>
+                                    <p class="text-base text-slate-300 leading-relaxed">Al Rowad Auditorium reserved for Final & Grand Finale. Dates integrated into school calendar with parent invitations & auditorium refreshments.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-brand-deepNavy/90 rounded-xl border border-slate-700/80 flex items-start space-x-4">
+                                <i class="fa-solid fa-id-badge text-amber-400 text-2xl mt-1 shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Branding & Identification</h4>
+                                    <p class="text-base text-slate-300 leading-relaxed">Custom lanyards for teachers, judges, pronouncers, organizers, and participating students.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-brand-deepNavy/90 rounded-xl border border-slate-700/80 flex items-start space-x-4">
+                                <i class="fa-solid fa-scroll text-amber-400 text-2xl mt-1 shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Promotion & Recognition</h4>
+                                    <p class="text-base text-slate-300 leading-relaxed">A3 flyers, Schoology announcements, digital word lists shared with parents, certificates for all participants and officials.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Live Marketing Card -->
+                    <div class="bg-gradient-to-br from-brand-cardBg to-red-950/30 p-7 rounded-xl border border-red-500/40 space-y-4 relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3 text-red-500">
+                                    <i class="fa-brands fa-youtube text-4xl"></i>
+                                    <span class="font-bold text-white text-xl">Live on YouTube</span>
+                                </div>
+                                <span class="animate-pulse bg-red-600 text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">Live Broadcast</span>
+                            </div>
+
+                            <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+                                Rounds 2 and 3 will be broadcast live on the official AIS YouTube channel—turning the tournament into a premium branding asset.
+                            </p>
+
+                            <div class="space-y-3 text-base text-slate-200">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-check text-emerald-400 text-lg"></i>
+                                    <span>On-screen score overlays with round-by-round team standings</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-check text-emerald-400 text-lg"></i>
+                                    <span>Co-branded AIS & Tadrees logos throughout the stream</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-check text-emerald-400 text-lg"></i>
+                                    <span>Reusable highlight footage for admissions & social media marketing</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-red-500/15 rounded-xl border border-red-500/30 text-sm md:text-base text-red-200 font-medium mt-4">
+                            <i class="fa-solid fa-heart-pulse text-red-400 mr-2 text-lg"></i> Allows working parents unable to attend in person to celebrate their child's success live!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Prize Investment / Budget -->
+        <section id="slide-7" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-3 gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Financial Clearance Request</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">PRIZE <span class="gold-gradient-text">INVESTMENT</span></h2>
+                    </div>
+                    <p class="text-base text-slate-300 max-w-sm">All operational items are handled in-department with zero additional external vendor cost.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto flex-grow">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="bg-gradient-to-b from-amber-500/20 to-brand-deepNavy p-6 rounded-xl border border-amber-500/50 text-center space-y-3">
+                            <i class="fa-solid fa-trophy text-amber-400 text-5xl"></i>
+                            <h4 class="font-bold text-white text-lg">Spelling Champions</h4>
+                            <p class="text-sm text-slate-300">2 Winners (Grade 4-6 & 7-9)</p>
+                            <p class="text-4xl font-extrabold font-mono text-amber-300">500 SAR <span class="text-xs font-normal text-slate-400">each</span></p>
+                            <p class="text-sm text-slate-400">Subtotal: 1,000 SAR</p>
+                        </div>
+
+                        <div class="bg-brand-deepNavy p-6 rounded-xl border border-slate-700/80 text-center space-y-3">
+                            <i class="fa-solid fa-medal text-slate-300 text-5xl"></i>
+                            <h4 class="font-bold text-white text-lg">Runners-Up</h4>
+                            <p class="text-sm text-slate-300">4 Winners (2 per Division)</p>
+                            <p class="text-4xl font-extrabold font-mono text-slate-200">250 SAR <span class="text-xs font-normal text-slate-400">each</span></p>
+                            <p class="text-sm text-slate-400">Subtotal: 1,000 SAR</p>
+                        </div>
+
+                        <div class="sm:col-span-2 bg-slate-800/50 p-4 rounded-xl border border-slate-700/80 flex flex-wrap gap-4 text-sm text-slate-200 justify-around">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-certificate text-amber-400 text-lg"></i> Certificates for all students</span>
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-award text-amber-400 text-lg"></i> Certificates for Judges</span>
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-video text-amber-400 text-lg"></i> In-house Livestream</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-brand-navy to-brand-cardBg p-10 rounded-2xl border-2 border-amber-500/70 shadow-2xl text-center space-y-5">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400">Total Fixed Budget Request</span>
+                        <div class="text-6xl md:text-7xl font-black font-mono text-amber-400">2,000 <span class="text-3xl font-sans text-slate-200">SAR</span></div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Covers total cash prize purses across both Junior (G4–6) and Senior (G7–9) divisions.
+                        </p>
+                        <div class="pt-4 border-t border-slate-700 text-sm text-slate-400 font-medium">
+                            Zero external agency fees • Produced entirely in-department
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Schedule -->
+        <section id="slide-8" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 slide-scroll-area h-full flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800 pb-3 gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Timeline & Milestones</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white mt-1">PROPOSED <span class="gold-gradient-text">SCHEDULE</span></h2>
+                    </div>
+                    <span class="text-sm px-4 py-2 bg-amber-500/15 text-amber-300 border border-amber-500/40 rounded-full font-bold">
+                        Target Window: Nov 5 – Dec 6, 2026
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-700 my-auto flex-grow flex flex-col justify-center">
+                    <table class="w-full text-left text-base md:text-lg">
+                        <thead class="bg-brand-deepNavy text-amber-400 uppercase tracking-wider text-xs md:text-sm border-b border-slate-700">
+                            <tr>
+                                <th class="p-5">Grade Division</th>
+                                <th class="p-5">Date</th>
+                                <th class="p-5">Day</th>
+                                <th class="p-5">Tournament Round</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-100 font-medium">
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-blue-400"><i class="fa-solid fa-child mr-2"></i>Grade 4–6</td>
+                                <td class="p-5 font-mono font-bold">Nov 5, 2026</td>
+                                <td class="p-5 text-slate-300">Thursday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-blue-500/20 text-blue-300 border border-blue-500/40 rounded-md font-bold text-xs md:text-sm">Round 1 League</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-purple-400"><i class="fa-solid fa-user-graduate mr-2"></i>Grade 7–9</td>
+                                <td class="p-5 font-mono font-bold">Nov 8, 2026</td>
+                                <td class="p-5 text-slate-300">Sunday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-blue-500/20 text-blue-300 border border-blue-500/40 rounded-md font-bold text-xs md:text-sm">Round 1 League</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-blue-400"><i class="fa-solid fa-child mr-2"></i>Grade 4–6</td>
+                                <td class="p-5 font-mono font-bold">Nov 15, 2026</td>
+                                <td class="p-5 text-slate-300">Sunday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-md font-bold text-xs md:text-sm">Round 2 The Final</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-purple-400"><i class="fa-solid fa-user-graduate mr-2"></i>Grade 7–9</td>
+                                <td class="p-5 font-mono font-bold">Nov 16, 2026</td>
+                                <td class="p-5 text-slate-300">Monday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-md font-bold text-xs md:text-sm">Round 2 The Final</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-blue-400"><i class="fa-solid fa-child mr-2"></i>Grade 4–6</td>
+                                <td class="p-5 font-mono font-bold">Dec 3, 2026</td>
+                                <td class="p-5 text-slate-300">Thursday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-red-500/20 text-red-300 border border-red-500/40 rounded-md font-extrabold text-xs md:text-sm">Round 3 Grand Finale</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-5 font-bold text-purple-400"><i class="fa-solid fa-user-graduate mr-2"></i>Grade 7–9</td>
+                                <td class="p-5 font-mono font-bold">Dec 6, 2026</td>
+                                <td class="p-5 text-slate-300">Sunday</td>
+                                <td class="p-5"><span class="px-3.5 py-1.5 bg-red-500/20 text-red-300 border border-red-500/40 rounded-md font-extrabold text-xs md:text-sm">Round 3 Grand Finale</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Next Steps / Approval Action -->
+        <section id="slide-9" class="slide-container w-full hidden h-full py-2">
+            <div class="glass-card rounded-2xl p-6 md:p-10 space-y-6 gold-border-glow relative slide-scroll-area h-full flex flex-col justify-between">
+                <div class="text-center space-y-3 max-w-2xl mx-auto">
+                    <span class="px-4 py-1.5 bg-amber-500/15 text-amber-300 border border-amber-500/40 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest">Decision Requested</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-extrabold text-white">NEXT <span class="gold-gradient-text">STEPS</span></h2>
+                    <p class="text-slate-200 text-base md:text-xl leading-relaxed font-normal">
+                        Select an action below to send approval directly to Department Head Amanullah Khan.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-sm md:text-base my-auto flex-grow">
+                    <div class="bg-brand-deepNavy/90 p-5 rounded-xl border border-slate-700/80 space-y-2 flex flex-col justify-center">
+                        <div class="text-amber-400 text-lg font-bold">1. Program Approval</div>
+                        <p class="text-slate-300 leading-relaxed">Sign off on the Spelling Bee Plan, 3-round structure, and standardized rule protocols.</p>
+                    </div>
+                    <div class="bg-brand-deepNavy/90 p-5 rounded-xl border border-slate-700/80 space-y-2 flex flex-col justify-center">
+                        <div class="text-amber-400 text-lg font-bold">2. Reserve Venue</div>
+                        <p class="text-slate-300 leading-relaxed">Reserve the Auditorium and add tournament dates to the official school calendar.</p>
+                    </div>
+                    <div class="bg-brand-deepNavy/90 p-5 rounded-xl border border-slate-700/80 space-y-2 flex flex-col justify-center">
+                        <div class="text-amber-400 text-lg font-bold">3. Approve Prize Purse</div>
+                        <p class="text-slate-300 leading-relaxed">Greenlight 2,000 SAR total cash prize budget for G4–9 Champions and Runners-Up.</p>
+                    </div>
+                    <div class="bg-brand-deepNavy/90 p-5 rounded-xl border border-slate-700/80 space-y-2 flex flex-col justify-center">
+                        <div class="text-amber-400 text-lg font-bold">4. Launch Promotion</div>
+                        <p class="text-slate-300 leading-relaxed">Clearance for flyers, QR registration, Schoology posts, and YouTube live streaming.</p>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800 flex flex-col items-center space-y-5">
+                    <h3 class="text-xl font-bold text-white text-center">Select Decision Action to Email Department Head:</h3>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full max-w-2xl">
+                        <!-- GO AHEAD BUTTON -->
+                        <button onclick="handleDecision('approve')" class="w-full sm:w-1/2 py-4 px-8 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold rounded-xl shadow-xl shadow-emerald-600/30 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3 text-lg">
+                            <i class="fa-solid fa-circle-check text-2xl"></i>
+                            <span>Go Ahead (Approve)</span>
+                        </button>
+
+                        <!-- MEETING NEEDED BUTTON -->
+                        <button onclick="handleDecision('meeting')" class="w-full sm:w-1/2 py-4 px-8 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-brand-deepNavy font-extrabold rounded-xl shadow-xl shadow-amber-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3 text-lg">
+                            <i class="fa-solid fa-calendar-check text-2xl"></i>
+                            <span>Meeting Needed</span>
+                        </button>
+                    </div>
+
+                    <p class="text-base text-slate-300 flex items-center gap-2 font-medium">
+                        <i class="fa-solid fa-envelope text-amber-400 text-lg"></i>
+                        Target Recipient: <span class="text-amber-300 font-mono font-bold text-lg">amanullah@ais.sch.sa</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="decisionModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-brand-navy border border-slate-700 rounded-2xl max-w-lg w-full p-7 space-y-6 shadow-2xl relative">
+            <button onclick="closeDecisionModal()" class="absolute top-4 right-4 text-slate-300 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-4">
+                <div id="modalIconContainer" class="w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0"></div>
+                <div>
+                    <h3 id="modalTitle" class="text-2xl font-bold text-white">Confirm Decision</h3>
+                    <p class="text-sm text-slate-300">Pre-fills email response to Amanullah Khan</p>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label for="optionalNotes" class="block text-base font-semibold text-slate-200">Optional Executive Comments / Notes:</label>
+                <textarea id="optionalNotes" rows="3" class="w-full bg-brand-deepNavy border border-slate-700 rounded-xl p-3.5 text-base text-white placeholder-slate-400 focus:outline-none focus:border-amber-500" placeholder="Add any specific conditions, preferred meeting dates, or comments..."></textarea>
+            </div>
+
+            <!-- Choice of Browser Gmail vs Default Mail App -->
+            <div class="space-y-3 pt-2">
+                <button id="sendGmailBtn" onclick="executeEmailSend('gmail')" class="w-full py-4 px-5 text-base font-extrabold text-white bg-red-600 hover:bg-red-500 rounded-xl shadow-lg flex items-center justify-center gap-3 transition">
+                    <i class="fa-brands fa-google text-xl"></i>
+                    <span>Open & Send via Gmail (Browser)</span>
+                </button>
+
+                <button id="sendMailtoBtn" onclick="executeEmailSend('mailto')" class="w-full py-3 px-5 text-sm font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl border border-slate-700 flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Open in Default Mail App (Outlook / Apple Mail)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 right-0 z-50 glass-card border-t border-slate-800 px-4 md:px-8 py-2.5 bg-brand-deepNavy/95 backdrop-blur-md h-14">
+        <div class="max-w-7xl mx-auto flex items-center justify-between h-full">
+            <button onclick="prevSlide()" id="prevBtn" class="px-4 py-1.5 bg-brand-cardBg hover:bg-brand-cardBorder border border-slate-700 text-slate-200 rounded-lg text-sm font-semibold flex items-center space-x-2 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span class="hidden sm:inline">Previous</span>
+            </button>
+
+            <div id="dotsContainer" class="flex items-center space-x-2">
+                <!-- JS Populated Dots -->
+            </div>
+
+            <button onclick="nextSlide()" id="nextBtn" class="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-brand-deepNavy font-bold rounded-lg text-sm flex items-center space-x-2 transition shadow-lg shadow-amber-500/20">
+                <span class="hidden sm:inline">Next</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        const totalSlides = 9;
+        let currentSlide = 1;
+
+        const slideTitles = [
+            "1. Proposal Cover",
+            "2. The Opportunity",
+            "3. Selection Process",
+            "4. Program Structure",
+            "5. Built-in Credibility",
+            "6. What We Need & Reach",
+            "7. Prize Investment",
+            "8. Proposed Schedule",
+            "9. Next Steps & Approval"
+        ];
+
+        let selectedDecisionType = 'approve';
+
+        window.onload = function() {
+            renderSlideMenu();
+            renderDots();
+            updateSlideView();
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'Space') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+        };
+
+        function renderSlideMenu() {
+            const menu = document.getElementById('slideMenu');
+            menu.innerHTML = '';
+            slideTitles.forEach((title, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-4 py-2.5 text-xs md:text-sm hover:bg-brand-cardBorder transition flex items-center justify-between ${idx + 1 === currentSlide ? 'text-amber-400 font-bold bg-amber-500/10' : 'text-slate-200'}`;
+                btn.innerHTML = `<span>${title}</span> ${idx + 1 === currentSlide ? '<i class="fa-solid fa-check text-xs"></i>' : ''}`;
+                btn.onclick = () => {
+                    goToSlide(idx + 1);
+                    toggleSlideMenu();
+                };
+                menu.appendChild(btn);
+            });
+        }
+
+        function renderDots() {
+            const container = document.getElementById('dotsContainer');
+            container.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.title = slideTitles[i-1];
+                dot.className = `h-2.5 rounded-full transition-all ${i === currentSlide ? 'w-7 bg-amber-400' : 'w-2.5 bg-slate-700 hover:bg-slate-500'}`;
+                dot.onclick = () => goToSlide(i);
+                container.appendChild(dot);
+            }
+        }
+
+        function toggleSlideMenu() {
+            const menu = document.getElementById('slideMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function goToSlide(slideNum) {
+            if (slideNum < 1 || slideNum > totalSlides) return;
+            currentSlide = slideNum;
+            updateSlideView();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlideView();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlideView();
+            }
+        }
+
+        function updateSlideView() {
+            for (let i = 1; i <= totalSlides; i++) {
+                const el = document.getElementById(`slide-${i}`);
+                if (el) {
+                    if (i === currentSlide) {
+                        el.classList.remove('hidden');
+                        el.classList.add('block');
+                    } else {
+                        el.classList.remove('block');
+                        el.classList.add('hidden');
+                    }
+                }
+            }
+
+            document.getElementById('slideIndicatorText').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+            document.getElementById('prevBtn').disabled = (currentSlide === 1);
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentSlide === totalSlides) {
+                nextBtn.innerHTML = `<span>Action Needed</span> <i class="fa-solid fa-flag-checkered"></i>`;
+                nextBtn.className = "px-4 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-lg text-sm flex items-center space-x-2 transition shadow-lg";
+            } else {
+                nextBtn.innerHTML = `<span class="hidden sm:inline">Next</span> <i class="fa-solid fa-chevron-right"></i>`;
+                nextBtn.className = "px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-brand-deepNavy font-bold rounded-lg text-sm flex items-center space-x-2 transition shadow-lg shadow-amber-500/20";
+            }
+
+            renderDots();
+            renderSlideMenu();
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Fullscreen request error: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function handleDecision(type) {
+            selectedDecisionType = type;
+            const modal = document.getElementById('decisionModal');
+            const iconContainer = document.getElementById('modalIconContainer');
+            const modalTitle = document.getElementById('modalTitle');
+
+            if (type === 'approve') {
+                iconContainer.className = 'w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl shrink-0';
+                iconContainer.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                modalTitle.innerText = 'Confirm Proposal Approval (Go Ahead)';
+            } else {
+                iconContainer.className = 'w-14 h-14 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-3xl shrink-0';
+                iconContainer.innerHTML = '<i class="fa-solid fa-calendar-check"></i>';
+                modalTitle.innerText = 'Request Discussion Meeting';
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeDecisionModal() {
+            document.getElementById('decisionModal').classList.add('hidden');
+            document.getElementById('optionalNotes').value = '';
+        }
+
+        function executeEmailSend(mode) {
+            const recipient = "amanullah@ais.sch.sa";
+            const userNotes = document.getElementById('optionalNotes').value.trim();
+            
+            let rawSubject = "";
+            let rawBody = "";
+
+            if (selectedDecisionType === 'approve') {
+                rawSubject = "APPROVED: Al Rowad Spelling Bee Championship 2026 Proposal";
+                rawBody = 
+                    "Dear Amanullah Khan,\n\n" +
+                    "I am pleased to inform you that the proposal for the Al Rowad International School Spelling Bee Championship 2026 is APPROVED.\n\n" +
+                    "Key Approved Scope:\n" +
+                    "- Tournament structure & rules protocol across Grades 4-9\n" +
+                    "- Reservation of Auditorium and academic calendar dates\n" +
+                    "- Prize purse budget of 2,000 SAR\n" +
+                    "- Promotional push and YouTube Live broadcast\n\n" +
+                    (userNotes ? "Executive Comments:\n" + userNotes + "\n\n" : "") +
+                    "Best regards,\n" +
+                    "School Leadership / Approval Authority\n" +
+                    "Al Rowad International Schools";
+            } else {
+                rawSubject = "MEETING REQUESTED: Al Rowad Spelling Bee Championship 2026 Proposal";
+                rawBody = 
+                    "Dear Amanullah Khan,\n\n" +
+                    "Thank you for presenting the proposal for the Spelling Bee Championship 2026.\n\n" +
+                    "I would like to schedule a brief meeting to discuss details regarding this proposal before final sign-off.\n\n" +
+                    (userNotes ? "Discussion Notes / Preferred Times:\n" + userNotes + "\n\n" : "") +
+                    "Best regards,\n" +
+                    "School Leadership\n" +
+                    "Al Rowad International Schools";
+            }
+
+            closeDecisionModal();
+
+            if (mode === 'gmail') {
+                // Open Gmail Web interface directly in browser
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(rawSubject)}&body=${encodeURIComponent(rawBody)}`;
+                window.open(gmailUrl, '_blank');
+            } else {
+                // Fallback to standard mailto
+                window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(rawSubject)}&body=${encodeURIComponent(rawBody)}`;
+            }
+        }
+    </script>
+</body>
+</html>
